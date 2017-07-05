@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+	<html>
+		<head>
+		<!--
+		Write a simple Javascript application which does the following in any framework or JS libraries of your choice. You can use a local file to mock the Ajax ReST calls.
+
+		The application has to fetch data from 2 different ReST API services. One of the API - API1 returns JSON and another API2 returns XML. API1 takes 5 seconds to return the response whereas API2 takes 10 seconds. Both the APIs return id,firstName,lastName in an array format. i.e. in JSON, it will be like
+
+		{"person":[{"id":10,"firstName":"John","lastName":"Doe"},{ "id":5,"firstName":"Jack","lastName":"Doe" },{"id":7,"firstName":"James","lastName":"Doe" }]}
+
+		Similarly xml will return 3 objects as an array <persons><person><id>3</id><firstName>Jen</firstName><lastName>Doe</lastName></person> <person><id>6</id><firstName>Stephanie</firstName><lastName>Joe</lastName></person> <person><id>1</id><firstName>Victoria</firstName><lastName>Doe</lastName></person> </persons>
+ 		-->
+
+		</head>
+		<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
+		<script type="text/javascript">
+
+			function fetchApi(url, ele) {
+				var resp = " ";
+			  var xhttp = new XMLHttpRequest();
+			  xhttp.onreadystatechange = function() {
+			    if (this.readyState == 4 && this.status == 200) {
+			     resp = this.responseText;
+			    }
+			  };
+			  xhttp.open("GET", url, true);
+			  xhttp.send();
+			}
+
+			fetchApi("personJson.txt", "demoJson");
+			fetchApi("person.xml", "demoXml");
+
+		</script>
+		<body >
+			<div id="demoJson">
+
+			</div>
+			<div id="demoXml">
+
+			</div>
+
+			<div ng-app="personApp" ng-controller="personCtrl">
+				<ul ng-repeat="person in personData">
+					<li>{{person.firstName}}</li>
+					<li>{{person.lastName}}</li>
+				</ul>
+			</div>
+			<script>
+				var app = angular.module("personApp", []);
+
+				app.controller('personCtrl', function($scope, $http) {
+					$http.get('personJson.txt')
+					.then(function(response){
+						$scope.personData = response.data;
+					});
+				});
+			</script>
+		</body>
+	</html>

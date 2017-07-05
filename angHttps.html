@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+	<html>
+		<head>
+		</head>
+			<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
+		<body>
+			<!-- Modules and Controller -->
+			<div ng-app="myApp" ng-controller="myCtrler">
+
+				<p>My name is: {{fname + " " + lname}}</p>
+			</div>
+
+			<script>
+				var app = angular.module("myApp",[]);
+
+				app.controller("myCtrler", function($scope){
+					$scope.fname = "john";
+					$scope.lname = "smith";
+				})
+			</script>
+		</body>
+	</html>

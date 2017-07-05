@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+	<html>
+		<head>
+		</head>
+			<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
+		<body>
+			<!-- Modules and Controller -->
+			<div ng-app="myApp" ng-controller="myCtrler">
+
+				<p>My name is: {{fname + " " + lname}}</p>
+			</div>
+
+			<script>
+				var app = angular.module("myApp",[]);
+
+				 function studentController($scope,$http) {
+		            var url = "";
+
+		            $http.get(url).then( function(response) {
+		               $scope.students = response.data;
+		            });
+		         }
+			</script>
+		</body>
+	</html>

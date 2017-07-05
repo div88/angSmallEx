@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+	<html>
+		<head>
+			<title>Angular Controllers With Methods</title>
+		</head>
+		<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
+		<body>
+
+			<div ng-app="myApp" ng-controller="personCtrl">
+				<label>First Name: <input type="text" ng-model="fname"></label>
+				<label>Last Name: <input type="text" ng-model="lname"></label>
+
+				<p>Full Name is: <span>{{fullName()}}</span>
+
+			</div>
+
+			<script>
+				var app = angular.module('myApp',[]);
+
+				app.controller('personCtrl',function($scope){
+					$scope.fname = "Liv";
+					$scope.lname = "Smith";
+					$scope.fullName = function() {
+						return $scope.fname + " " + $scope.lname;
+					};
+				});
+			</script>
+		</body>
+	</html>
