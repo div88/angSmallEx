@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+	<html>
+		<head>
+			<title>Angular Overview</title>
+					<script src="../angularMin.js"></script>
+
+		</head>
+
+		<body>
+			<div ng-app="" ng-init="yourmessage='Hello World'">
+				<b>Please enter a message:</b>
+			  	<div>
+			    	<input type="text" ng-model="yourmessage" value="{{yourmessage}}">
+			  	</div>
+
+			  	<div>
+			    	<b>Your Message</b>
+			    	<p>
+			      		{{yourmessage}}
+			    	</p>
+			  	</div>
+			</div>
+		</body>
+	</html>
